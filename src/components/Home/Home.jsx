@@ -1,7 +1,9 @@
+import Header from "../Header/Header";
+
 const Home = () => {
   return (
-    <div>
-      <h1>This is Home</h1>
+    <div className="container mx-auto">
+      <Header></Header>
     </div>
   );
 };
