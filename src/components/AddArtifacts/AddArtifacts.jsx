@@ -1,12 +1,11 @@
-import { useContext, useState } from "react";
-// import { toast } from "react-toastify";
+import { useContext } from "react";
 import { Helmet } from "react-helmet";
 import { AuthContext } from "../../Firebase/AuthProvider";
-
+import Swal from 'sweetalert2'
 
 
 const AddArtifacts = () => {
-  const {userAvailability} = useContext(AuthContext);
+  const { userAvailability } = useContext(AuthContext);
 
   const submitHandler = e => {
     e.preventDefault();
@@ -21,15 +20,30 @@ const AddArtifacts = () => {
     const discoverdBy = e.target.discoverdBy.value;
     const presentLocation = e.target.presentLocation.value;
     const likes = 0;
-    
-    const anArtifact = {userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, likes};
+    const anArtifact = { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, likes };
 
-    console.log(anArtifact);
     fetch('http://localhost:5000/allArtifacts', {
       method: "POST",
-      headers: {'content-type': 'application/json'},
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(anArtifact)
     })
+      .then(res => {
+        if (res.ok) {
+            Swal.fire({
+              title: "Good job!",
+              text: "You are successfully added a artifact.",
+              icon: "success"
+            });
+          e.target.artifactName.value = "";
+          e.target.artifactImage.value = "";
+          e.target.artifactType.value = "";
+          e.target.historicalContext.value = "";
+          e.target.createdAt.value = "";
+          e.target.discoverdAt.value = "";
+          e.target.discoverdBy.value = "";
+          e.target.presentLocation.value = "";
+        }
+      });
   }
   return (
     <div className="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-lg shadow-md dark:text-black">
@@ -70,14 +84,9 @@ const AddArtifacts = () => {
             </select>
           </div>
 
-          {/* <div>
+          <div>
             <label className="block text-sm font-medium text-gray-700">Historical Context</label>
-            <input required type="text" name="Historical Context" placeholder="Context" className="input input-bordered mt-1 border-[#FFCC6C] w-full" />
-          </div> */}
-
-          <div className="">
-            <label className="block text-sm font-medium text-gray-700">Historical Context</label>
-            <textarea required name="historicalContext" placeholder="Context" className="w-full textarea mt-1 border-[#FFCC6C]"></textarea>
+            <textarea required name="historicalContext" placeholder="Context" className="w-full h-10 textarea mt-1 border-[#FFCC6C]"></textarea>
           </div>
 
           <div>
