@@ -3,33 +3,47 @@ import logo from '../../assets/logo.png';
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/AuthProvider";
 import { toast } from "react-toastify";
-import { auth } from "../../Firebase/firebase.init";
-
 
 
 const NavBar = () => {
   const { userAvailability, logOut } = useContext(AuthContext);
   let navItems = <>
-    <li><NavLink className={({ isActive }) =>
-      isActive
-        ? "bg-[#FFCC6C] px-5 font-bold underline rounded-full"
-        : "font-medium"
-    } to="/">Home</NavLink></li>
-    <li><NavLink className={({ isActive }) =>
-      isActive
-        ? "bg-[#FFCC6C] font-bold underline rounded-full"
-        : "font-medium"
-    } to="allArtifacts">All Artifacts</NavLink></li>
-    <li><NavLink className={({ isActive }) =>
-      isActive
-        ? "bg-[#FFCC6C] font-bold underline rounded-full"
-        : "font-medium"
-    } to="addArtifacts">Add Artifacts</NavLink></li>
+    {
+      userAvailability ? <>
+        <li><NavLink className={({ isActive }) =>
+          isActive
+            ? "bg-[#FFCC6C] px-5 font-bold underline rounded-full"
+            : "font-medium"
+        } to="/">Home</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+          isActive
+            ? "bg-[#FFCC6C] font-bold underline rounded-full"
+            : "font-medium"
+        } to="allArtifacts">All Artifacts</NavLink></li>
+        <li><NavLink className={({ isActive }) =>
+          isActive
+            ? "bg-[#FFCC6C] font-bold underline rounded-full"
+            : "font-medium"
+        } to="addArtifacts">Add Artifacts</NavLink></li>
+      </>
+        : <>
+          <li><NavLink className={({ isActive }) =>
+            isActive
+              ? "bg-[#FFCC6C] px-5 font-bold underline rounded-full"
+              : "font-medium"
+          } to="/">Home</NavLink></li>
+          <li><NavLink className={({ isActive }) =>
+            isActive
+              ? "bg-[#FFCC6C] font-bold underline rounded-full"
+              : "font-medium"
+          } to="allArtifacts">All Artifacts</NavLink></li>
+        </>
+    }
   </>;
   const logoutHandler = () => logOut().then(() => toast.success("Logout successful."))
   return (
     <div>
-      <div className="navbar bg-base-100">
+      <div className="navbar container mx-auto bg-base-100">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="pl-0 pr-1.5 btn btn-ghost lg:hidden">
@@ -63,10 +77,10 @@ const NavBar = () => {
           {
             userAvailability ?
               <div className="flex gap-1">
-                <button onClick={logoutHandler} className="btn btn-sm md:btn-md btn-error font-semibold">Logout</button>
+                <button onClick={logoutHandler} className="btn btn-sm md:btn-md rounded-full btn-error font-semibold">Logout</button>
               </div> : <div className="flex gap-1">
-                <NavLink to="/login" className="btn btn-sm md:btn-md btn-success font-semibold">Login</NavLink>
-                <NavLink to="/register" className="btn btn-sm md:btn-md btn-success font-semibold">Register</NavLink>
+                <NavLink to="/login" className="btn btn-sm md:btn-md rounded-full btn-success font-semibold">Login</NavLink>
+                <NavLink to="/register" className="btn btn-sm md:btn-md rounded-full btn-success font-semibold">Register</NavLink>
               </div>
           }
           {
@@ -80,9 +94,9 @@ const NavBar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li><NavLink to="myArticles">My Articles</NavLink></li>
-                <li><NavLink to="likedArticles">Liked Artifacts</NavLink></li>
+                className="menu menu-sm gap-1.5 dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
+                <li><NavLink to="/myArtifacts">My Artifacts</NavLink></li>
+                <li><NavLink to="/likedArtifacts">Liked Artifacts</NavLink></li>
               </ul>
             </div>
           }

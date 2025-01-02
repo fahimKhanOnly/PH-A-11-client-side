@@ -1,6 +1,6 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
@@ -15,9 +15,11 @@ import { Tooltip } from 'react-tooltip'
 import 'react-toastify/dist/ReactToastify.css';
 import 'react-tooltip/dist/react-tooltip.css'
 import { ToastContainer } from 'react-toastify';
-
-
-
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
+import AllArtifacts from './components/AllArtifacts/AllArtifacts.jsx';
+import AddArtifacts from './components/AddArtifacts/AddArtifacts.jsx';
+import LikedArtifacts from './components/LikedArtifacts/LikedArtifacts.jsx';
+import MyArtifacts from './components/MyArtifacts/MyArtifacts.jsx';
 
 
 const router = createBrowserRouter([
@@ -37,6 +39,22 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login />
+      },
+      {
+        path: '/allArtifacts',
+        element: <AllArtifacts/>
+      },
+      {
+        path: '/addArtifacts',
+        element: <PrivateRoute><AddArtifacts/></PrivateRoute>
+      },
+      {
+        path: '/LikedArtifacts',
+        element: <PrivateRoute><LikedArtifacts/></PrivateRoute>,
+      },
+      {
+        path: '/myArtifacts',
+        element: <PrivateRoute><MyArtifacts/></PrivateRoute>
       }
     ]
   }
