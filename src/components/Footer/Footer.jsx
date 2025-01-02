@@ -10,7 +10,6 @@ const Footer = () => {
     <footer className="bg-[#0000001A] mt-14 py-8">
       <div className="container mx-auto px-4">
         <div className="flex flex-wrap justify-between">
-
           <div className="w-full md:w-1/3 md:pr-3 mb-6 md:mb-0">
             <div className="mb-5">
             <Link to="/" className="flex items-center gap-1 sm:gap-4"><img className='w-32 sm:w-40' src={logo}/></Link>
@@ -22,7 +21,6 @@ const Footer = () => {
             </div>
           </div>
 
-          
           <div className="w-full md:w-1/3 mb-6 md:mb-0">
             <h2 className="text-lg font-semibold mb-4">Quick Links</h2>
             <ul className="space-y-2">
@@ -32,7 +30,6 @@ const Footer = () => {
             </ul>
           </div>
 
-          
           <div className="w-full flex flex-col justify-center md:w-1/3">
             <h2 className="text-lg font-semibold mb-4">Contact Us</h2>
             <p className="text-sm">Email: support@historiex.com</p>
@@ -48,7 +45,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-
         <div className="divider pt-4"></div>
         <div className="text-center pt-4">
           <p className="text-sm">© 2025 HistoriX. All Rights Reserved.</p>
