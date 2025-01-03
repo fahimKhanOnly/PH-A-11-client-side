@@ -20,7 +20,7 @@ const Slider = () => {
             <p className=' text-white border-t md:mb-8'>Find aesthetic pleasure</p>
             <h2 className='text-[1.7rem] font-bold text-white sm:text-4xl lg:font-extrabold lg:text-5xl'>Bestselling Artists</h2>
 
-            <p className='sm:mt-3.5 text-white text-center w-[90%] lg:w-[90%] xl:w-[86%]'>Our aim is to serve the needs of all art lovers; from those looking for a one-off painting to serious collectors looking for investments. We believe that in investment terms the artist.</p>
+            <p className='sm:mt-3.5 text-white text-center w-[90%] lg:w-[90%] xl:w-[82%]'>Our aim is to serve the needs of all art lovers; from those looking for a one-off painting to serious collectors looking for investments. We believe that in investment terms the artist.</p>
           </div>
         </div>
 
@@ -37,7 +37,7 @@ const Slider = () => {
             <p className=' text-white border-t md:mb-8'>Feel the art mentality</p>
             <h2 className='text-[1.7rem] font-bold text-white sm:text-4xl lg:font-extrabold lg:text-5xl'>Diversity of Thoughts</h2>
 
-            <p className='sm:mt-3.5 text-white text-center w-[90%] lg:w-[90%] xl:w-[86%]'>Welcome to our range of Original Paintings, Limited and Open Edition Framed Prints and Edge Sculpture. Our gallery presents an extensive selection of wall art, images and frames.</p>
+            <p className='sm:mt-3.5 text-white text-center w-[90%] lg:w-[90%] xl:w-[82%]'>Welcome to our range of Original Paintings, Limited and Open Edition Framed Prints and Edge Sculpture. Our gallery presents an extensive selection of wall art, images and frames.</p>
           </div>
         </div>
 
@@ -51,10 +51,9 @@ const Slider = () => {
 
           <div className='w-full absolute bg-[#00000077] h-full sm:justify-center -z-10  flex flex-col items-center justify-center p-3'>
 
-            <p className=' text-white border-t md:mb-8'>Feel the art mentality</p>
-            <h2 className='text-[1.7rem] font-bold text-white sm:text-4xl lg:font-extrabold lg:text-5xl'>Diversity of Thoughts</h2>
+            <h2 className='text-[1.7rem] font-bold text-white sm:text-4xl lg:font-extrabold lg:text-5xl'>Uncover Ancient Treasures</h2>
 
-            <p className='sm:mt-3.5 text-white text-center w-[90%] lg:w-[90%] xl:w-[86%]'>Welcome to our range of Original Paintings, Limited and Open Edition Framed Prints and Edge Sculpture. Our gallery presents an extensive selection of wall art, images and frames.</p>
+            <p className='sm:mt-3.5 text-white text-center w-[90%] lg:w-[90%] xl:w-[82%]'>Step into the past and explore the wonders of ancient civilizations. HistoriX brings history to life with detailed artifacts and their captivating stories.</p>
           </div>
         </div>
       </div>
