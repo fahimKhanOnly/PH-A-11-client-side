@@ -2,7 +2,6 @@ import { useLoaderData } from "react-router-dom";
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 
 
-
 const ArtifactDetails = () => {
   const { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, likes } = useLoaderData();
   return (
@@ -34,8 +33,8 @@ const ArtifactDetails = () => {
           <div className="hover:cursor-pointer flex items-center gap-2 mt-5 border w-fit rounded-lg">
 
             <div className="btn">
-              <FaRegThumbsUp />
-              {/* <FaThumbsUp /> */}
+              <FaRegThumbsUp className="text-xl" />
+              {/* <FaThumbsUp className="text-xl" /> */}
             </div>
 
 

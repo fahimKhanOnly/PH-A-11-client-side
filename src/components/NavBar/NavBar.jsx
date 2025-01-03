@@ -95,7 +95,7 @@ const NavBar = () => {
               <ul
                 tabIndex={0}
                 className="menu menu-sm gap-1.5 dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-                <li><NavLink to="/myArtifacts">My Artifacts</NavLink></li>
+                <li><NavLink to={`/myArtifacts?email=${userAvailability.email}`}>My Artifacts</NavLink></li>
                 <li><NavLink to="/likedArtifacts">Liked Artifacts</NavLink></li>
               </ul>
             </div>
