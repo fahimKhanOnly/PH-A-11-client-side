@@ -7,11 +7,11 @@ const AllArtifacts = () => {
 
   return (
     <div className="container mx-auto">
-      <h1>All artifacts</h1>
+      <h4 className="ml-4 my-6 font-bold text-lg">Total Available <span>({getArtifact.length})</span></h4>
       <div className="space-y-4 mx-1.5 xl:grid gap-5 grid-cols-2">
       {
         getArtifact.map(data => 
-          <div className="card lg:justify-between lg:card-side bg-base-100 shadow-xl">
+          <div key={data._id} className="card lg:justify-between lg:card-side bg-base-100 shadow-xl">
             <figure className="lg:w-1/2">
               <img className="h-full" src={data.artifactImage} alt={data.artifactName}/>
             </figure>
@@ -22,7 +22,7 @@ const AllArtifacts = () => {
               <div className="divider my-0 h-0"></div>
               <p className="text-lg font-medium text-gray-500">Present Location: <span className="text-lg font-semibold text-black">{data.artifactName}</span></p>
               <div className="card-actions justify-end mt-5">
-                <Link className="btn btn-sm bg-[#FFCC6C]">View Details</Link>
+                <Link to={`/allArtifacts/${data._id}`} className="btn btn-sm bg-[#FFCC6C]">View Details</Link>
               </div>
             </div>
           </div>

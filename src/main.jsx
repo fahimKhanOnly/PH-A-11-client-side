@@ -20,6 +20,7 @@ import AllArtifacts from './components/AllArtifacts/AllArtifacts.jsx';
 import AddArtifacts from './components/AddArtifacts/AddArtifacts.jsx';
 import LikedArtifacts from './components/LikedArtifacts/LikedArtifacts.jsx';
 import MyArtifacts from './components/MyArtifacts/MyArtifacts.jsx';
+import ArtifactDetails from './components/ArtifactDetails/ArtifactDetails.jsx';
 
 
 const router = createBrowserRouter([
@@ -56,7 +57,12 @@ const router = createBrowserRouter([
       {
         path: '/myArtifacts',
         element: <PrivateRoute><MyArtifacts/></PrivateRoute>
-      }
+      },
+      {
+        path: "/allArtifacts/:id",
+        element: <PrivateRoute><ArtifactDetails></ArtifactDetails></PrivateRoute>,
+        loader: ({ params }) => fetch(`http://localhost:5000/allArtifacts/${params.id}`)
+      },
     ]
   }
 ])
