@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2';
 import empty from '../../assets/empty.svg';
+import { Helmet } from "react-helmet";
 
 
 const MyArtifacts = () => {
@@ -45,6 +46,9 @@ const MyArtifacts = () => {
   }
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>HistoriX | My Artifacts</title>
+      </Helmet>
       <h4 className="ml-4 my-6 font-bold text-lg">Total Available <span>({getMyArtifact.length})</span></h4>
       {
         getMyArtifact.length === 0 ? 

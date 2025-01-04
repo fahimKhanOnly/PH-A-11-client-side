@@ -1,11 +1,15 @@
 import { useLoaderData } from "react-router-dom";
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
+import { Helmet } from "react-helmet";
 
 
 const ArtifactDetails = () => {
   const { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, likes } = useLoaderData();
   return (
     <div className="container mx-auto pt-9">
+      <Helmet>
+        <title>HistoriX | Details</title>
+      </Helmet>
       <div className="card lg:justify-between mx-1.5 lg:card-side bg-base-100 shadow-xl">
         <figure className="lg:w-1/2">
           <img className="h-full" src={artifactImage} alt={artifactName} />

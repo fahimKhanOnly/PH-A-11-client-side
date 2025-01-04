@@ -6,14 +6,13 @@ import Swal from 'sweetalert2'
 
 const AddArtifacts = () => {
   const { userAvailability } = useContext(AuthContext);
-
   const submitHandler = e => {
     e.preventDefault();
     const userName = e.target.myName.value;
     const myEmail = e.target.myEmail.value;
     const artifactName = e.target.artifactName.value;
     const artifactImage = e.target.artifactImage.value;
-    const artifactType = e.target.artifactType.value;
+    const artifactType = e.target.artifactType.value === "Select Artifact type" ? null : e.target.artifactType.value;
     const historicalContext = e.target.historicalContext.value;
     const createdAt = e.target.createdAt.value;
     const discoverdAt = e.target.discoverdAt.value;
@@ -81,12 +80,14 @@ const AddArtifacts = () => {
               <option>Weapons</option>
               <option>Documents</option>
               <option>Writings</option>
+              <option>Statue</option>
+              <option>Paintings</option>
             </select>
           </div>
 
           <div>
             <label className="block text-sm font-medium text-gray-700">Historical Context</label>
-            <textarea required name="historicalContext" placeholder="Context" className="w-full h-10 textarea mt-1 border-[#FFCC6C]"></textarea>
+            <textarea style={{resize: "none"}} required name="historicalContext" placeholder="Context" className="w-full h-12 textarea mt-1 border-[#FFCC6C]"></textarea>
           </div>
 
           <div>

@@ -1,14 +1,17 @@
 import { useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import empty from '../../assets/empty.svg';
+import { Helmet } from "react-helmet";
 
 
 const AllArtifacts = () => {
   const allData = useLoaderData();
   const [getArtifact, setArtifact] = useState(allData);
-
   return (
     <div className="container mx-auto">
+      <Helmet>
+        <title>HistoriX | All Artifacts</title>
+      </Helmet>
       <h4 className="ml-4 my-6 font-bold text-lg">Total Available <span>({getArtifact.length})</span></h4>
       {
         getArtifact.length === 0 ? <div className="flex justify-center items-center">

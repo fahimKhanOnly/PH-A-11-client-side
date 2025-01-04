@@ -21,6 +21,7 @@ import AddArtifacts from './components/AddArtifacts/AddArtifacts.jsx';
 import LikedArtifacts from './components/LikedArtifacts/LikedArtifacts.jsx';
 import MyArtifacts from './components/MyArtifacts/MyArtifacts.jsx';
 import ArtifactDetails from './components/ArtifactDetails/ArtifactDetails.jsx';
+import Update from './components/Update/Update.jsx';
 
 
 const router = createBrowserRouter([
@@ -63,6 +64,11 @@ const router = createBrowserRouter([
         element: <PrivateRoute><ArtifactDetails></ArtifactDetails></PrivateRoute>,
         loader: ({ params }) => fetch(`http://localhost:5000/allArtifacts/${params.id}`)
       },
+      {
+        path: "/myArtifacts/update/:id",
+        element: <PrivateRoute><Update></Update></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/allArtifacts/${params.id}`)
+      }
     ]
   }
 ])
