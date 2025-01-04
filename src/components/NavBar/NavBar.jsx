@@ -1,4 +1,4 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import logo from '../../assets/logo.png';
 import { useContext } from "react";
 import { AuthContext } from "../../Firebase/AuthProvider";
@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 
 const NavBar = () => {
   const { userAvailability, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
   let navItems = <>
     {
       userAvailability ? <>
@@ -40,7 +41,10 @@ const NavBar = () => {
         </>
     }
   </>;
-  const logoutHandler = () => logOut().then(() => toast.success("Logout successful."))
+  const logoutHandler = () => logOut().then(() => {
+    toast.success("Logout successful.");
+    navigate("/login");
+  })
   return (
     <div>
       <div className="navbar container mx-auto bg-base-100">

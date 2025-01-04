@@ -11,7 +11,6 @@ const Featured = () => {
       .then(data => setFeaturedData(data))
       .catch(err => console.log(err.message))
   }, [])
-  console.log(getFeaturedData);
   return (
     <div className="container mx-auto flex flex-col items-center py-20">
       <h1 className="text-center font-bold text-4xl mb-12"><span className="border-orange-400 border-b-4">Featured</span> Artifacts</h1>

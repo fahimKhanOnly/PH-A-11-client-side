@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2';
 import empty from '../../assets/empty.svg';
@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet";
 
 const MyArtifacts = () => {
   const [getMyArtifact, setArtifact] = useState([]);
+  const navigate = useNavigate();
   const { search } = useLocation();
   useEffect(() => {
     fetch(`http://localhost:5000/myArtifacts${search}`)
@@ -37,8 +38,7 @@ const MyArtifacts = () => {
               text: "You are successfully deleted an artifact.",
               icon: "success"
             });
-            let afterDeletedData = getMyArtifact.filter(data => data._id !== id);
-            setArtifact(afterDeletedData);
+            navigate("/allArtifacts");
           }
         })
       }

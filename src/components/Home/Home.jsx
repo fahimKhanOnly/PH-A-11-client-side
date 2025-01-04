@@ -2,6 +2,7 @@ import { Helmet } from "react-helmet";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import Featured from "../Featured/Featured";
+import Testimonial from "../Testimonial/Testimonial";
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       </Helmet>
       <Header></Header>
       <Featured></Featured>
+      <Testimonial></Testimonial>
       <Footer/>
     </div>
   );
