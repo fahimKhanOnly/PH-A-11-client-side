@@ -13,8 +13,8 @@ const Featured = () => {
   }, [])
   console.log(getFeaturedData);
   return (
-    <div className="container mx-auto py-20">
-      <h1 className="text-center font-bold text-4xl mb-10"><span className="border-orange-400 border-b-4">Featured</span> Artifacts</h1>
+    <div className="container mx-auto flex flex-col items-center py-20">
+      <h1 className="text-center font-bold text-4xl mb-12"><span className="border-orange-400 border-b-4">Featured</span> Artifacts</h1>
 
       {
         getFeaturedData.length === 0 ? <div className="flex justify-center items-center">
@@ -38,7 +38,6 @@ const Featured = () => {
                       <p className="text-center font-medium">{data.likes} Likes</p>
                     </div>
                   </div>
-
                   <Link to={`/allArtifacts/${data._id}`} className="btn btn-sm bg-[#FFCC6C]">View Details</Link>
                 </div>
               </div>
@@ -46,6 +45,7 @@ const Featured = () => {
           )
         }</div>
       }
+      <Link className="btn mt-12 bg-[#FDCC6D] hover:bg-black hover:text-white text-lg px-7" to="/allArtifacts">See All</Link>
     </div>
   );
 };

@@ -36,9 +36,9 @@ const ArtifactDetails = () => {
           <p className="text-lg font-medium text-gray-500">Description: <span className="text-lg font-semibold text-black">{description}</span></p>
           <div className="divider my-0 h-0"></div>
 
-          <div className="hover:cursor-pointer flex items-center gap-2 mt-5 border w-fit rounded-lg">
+          <div className="flex items-center gap-2 mt-5 border w-fit rounded-lg">
             <div className="btn">
-              <FaRegThumbsUp className="text-xl" />
+              <FaRegThumbsUp className="hover:cursor-pointer text-xl" />
               {/* <FaThumbsUp className="text-xl" /> */}
             </div>
             <div className="flex items-center px-4 justify-center">
