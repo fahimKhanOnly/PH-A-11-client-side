@@ -4,7 +4,7 @@ import { Helmet } from "react-helmet";
 
 
 const ArtifactDetails = () => {
-  const { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, likes } = useLoaderData();
+  const { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes } = useLoaderData();
   return (
     <div className="container mx-auto pt-9">
       <Helmet>
@@ -32,6 +32,8 @@ const ArtifactDetails = () => {
           <p className="text-lg font-medium text-gray-500">Discoverd by: <span className="text-lg font-semibold text-black">{discoverdBy}</span></p>
           <div className="divider my-0 h-0"></div>
           <p className="text-lg font-medium text-gray-500">Historical Context: <span className="text-lg font-semibold text-black">{historicalContext}</span></p>
+          <div className="divider my-0 h-0"></div>
+          <p className="text-lg font-medium text-gray-500">Description: <span className="text-lg font-semibold text-black">{description}</span></p>
           <div className="divider my-0 h-0"></div>
 
           <div className="hover:cursor-pointer flex items-center gap-2 mt-5 border w-fit rounded-lg">

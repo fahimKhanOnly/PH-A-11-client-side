@@ -4,7 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const Update = () => {
-  const {_id, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation } = useLoaderData();
+  const { _id, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description } = useLoaderData();
   useEffect(() => {
     let type = document.querySelector("#artifactTypeDropDown");
     for (const element of type) {
@@ -24,7 +24,8 @@ const Update = () => {
     const discoverdAt = e.target.discoverdAt.value;
     const discoverdBy = e.target.discoverdBy.value;
     const presentLocation = e.target.presentLocation.value;
-    const latestArtifact = { artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation };
+    const description = e.target.description.value;
+    const latestArtifact = { artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description };
 
     Swal.fire({
       title: "Are you sure?",
@@ -41,14 +42,14 @@ const Update = () => {
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify(latestArtifact)
         }).then(res => {
-            if (res.ok) {
-                Swal.fire({
-                  title: "Updated",
-                  text: "Updated successfully.",
-                  icon: "success"
-                });
-            }
-          });
+          if (res.ok) {
+            Swal.fire({
+              title: "Updated",
+              text: "Updated successfully.",
+              icon: "success"
+            });
+          }
+        });
       }
     });
   }
@@ -106,6 +107,11 @@ const Update = () => {
             <div>
               <label className="block text-sm font-medium text-gray-700">Present Location</label>
               <input defaultValue={presentLocation} type="text" name="presentLocation" required placeholder="Present Location" className="input border-[#FFCC6C] input-bordered mt-1  w-full" />
+            </div>
+
+            <div className="col-span-2">
+              <label className="block text-sm font-medium text-gray-700">Short Description</label>
+              <textarea type="text" defaultValue={description} name="description" required placeholder="Short Description." className="input border-[#FFCC6C] input-bordered mt-1  w-full" />
             </div>
           </div>
 

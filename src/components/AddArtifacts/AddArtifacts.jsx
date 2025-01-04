@@ -18,8 +18,9 @@ const AddArtifacts = () => {
     const discoverdAt = e.target.discoverdAt.value;
     const discoverdBy = e.target.discoverdBy.value;
     const presentLocation = e.target.presentLocation.value;
+    const description = e.target.description.value;
     const likes = 0;
-    const anArtifact = { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, likes };
+    const anArtifact = { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes };
 
     fetch('http://localhost:5000/allArtifacts', {
       method: "POST",
@@ -28,11 +29,11 @@ const AddArtifacts = () => {
     })
       .then(res => {
         if (res.ok) {
-            Swal.fire({
-              title: "Good job!",
-              text: "You are successfully added a artifact.",
-              icon: "success"
-            });
+          Swal.fire({
+            title: "Good job!",
+            text: "You are successfully added a artifact.",
+            icon: "success"
+          });
           e.target.artifactName.value = "";
           e.target.artifactImage.value = "";
           e.target.artifactType.value = "";
@@ -41,6 +42,7 @@ const AddArtifacts = () => {
           e.target.discoverdAt.value = "";
           e.target.discoverdBy.value = "";
           e.target.presentLocation.value = "";
+          e.target.description.value = "";
         }
       });
   }
@@ -87,7 +89,7 @@ const AddArtifacts = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-700">Historical Context</label>
-            <textarea style={{resize: "none"}} required name="historicalContext" placeholder="Context" className="w-full h-12 textarea mt-1 border-[#FFCC6C]"></textarea>
+            <textarea style={{ resize: "none" }} required name="historicalContext" placeholder="Context" className="w-full h-12 textarea mt-1 border-[#FFCC6C]"></textarea>
           </div>
 
           <div>
@@ -108,6 +110,11 @@ const AddArtifacts = () => {
           <div>
             <label className="block text-sm font-medium text-gray-700">Present Location</label>
             <input type="text" name="presentLocation" required placeholder="Present Location" className="input border-[#FFCC6C] input-bordered mt-1  w-full" />
+          </div>
+
+          <div className="col-span-2">
+            <label className="block text-sm font-medium text-gray-700">Short Description</label>
+            <textarea type="text" name="description" required placeholder="Short Description." className="input border-[#FFCC6C] input-bordered mt-1  w-full" />
           </div>
         </div>
 
