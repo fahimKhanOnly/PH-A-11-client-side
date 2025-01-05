@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import empty from '../../assets/empty.svg';
 import { Helmet } from "react-helmet";
@@ -7,11 +7,33 @@ import { Helmet } from "react-helmet";
 const AllArtifacts = () => {
   const allData = useLoaderData();
   const [getArtifact, setArtifact] = useState(allData);
+
+  const searchHandler = e => {
+    e.preventDefault();
+    const keyword = e.target.searchField.value.toLowerCase().trim().replace(/\s+/g, '');
+    if(keyword){
+      fetch(`http://localhost:5000/findArtifacts?name=${keyword}`)
+        .then(res => res.json())
+        .then(result => setArtifact(result))
+    }
+    setArtifact(allData);
+  }
+
   return (
     <div className="container mx-auto">
       <Helmet>
         <title>HistoriX | All Artifacts</title>
       </Helmet>
+      <div className="w-fit m-auto my-6 sm:w-1/2 xl:w-1/3">
+        <form onSubmit={searchHandler}>
+          <label className="input input-bordered flex items-center gap-2">
+            <input name="searchField" type="text" className="grow" placeholder="Search" />
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="currentColor" className="h-4 w-4 opacity-70">
+              <path fillRule="evenodd" d="M9.965 11.026a5 5 0 1 1 1.06-1.06l2.755 2.754a.75.75 0 1 1-1.06 1.06l-2.755-2.754ZM10.5 7a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" clipRule="evenodd" />
+            </svg>
+          </label>
+        </form>
+      </div>
       <h4 className="ml-4 my-6 font-bold text-lg">Total Available <span>({getArtifact.length})</span></h4>
       {
         getArtifact.length === 0 ? <div className="flex justify-center items-center">
