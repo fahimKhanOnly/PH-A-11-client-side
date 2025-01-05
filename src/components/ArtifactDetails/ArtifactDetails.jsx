@@ -1,7 +1,6 @@
-import { useLoaderData } from "react-router-dom";
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 import { Helmet } from "react-helmet";
-
+import { useLoaderData } from "react-router-dom";
 
 const ArtifactDetails = () => {
   const { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes } = useLoaderData();

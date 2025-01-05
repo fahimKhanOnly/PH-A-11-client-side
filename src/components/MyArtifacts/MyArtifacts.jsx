@@ -4,6 +4,7 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import Swal from 'sweetalert2';
 import empty from '../../assets/empty.svg';
 import { Helmet } from "react-helmet";
+import axios from "axios";
 
 
 const MyArtifacts = () => {
@@ -11,10 +12,9 @@ const MyArtifacts = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
   useEffect(() => {
-    fetch(`http://localhost:5000/myArtifacts${search}`)
-      .then(res => res.json())
-      .then(data => setArtifact(data))
-      .catch(err => console.log(err.message));
+  axios.get(`http://localhost:5000/myArtifacts${search}`, {withCredentials: true})
+  .then(data => setArtifact(data.data))
+
   }, []);
 
   const deleteHandler = id => {

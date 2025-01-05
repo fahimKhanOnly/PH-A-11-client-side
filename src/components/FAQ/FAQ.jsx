@@ -35,7 +35,7 @@ const FAQ = () => {
       <div className='flex justify-between gap-8 items-center'>
       <div className="xl:w-2/3 space-y-2">
         {
-          faqs.map(faq => <div>
+          faqs.map((faq, idx) => <div key={idx}>
             <div tabIndex={0} className="collapse collapse-arrow border-base-300 bg-base-200 border">
               <div className="collapse-title text-xl font-bold">{faq.question}</div>
               <div className="collapse-content">
