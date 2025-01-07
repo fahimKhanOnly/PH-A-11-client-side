@@ -12,7 +12,7 @@ const MyArtifacts = () => {
   const navigate = useNavigate();
   const { search } = useLocation();
   useEffect(() => {
-  axios.get(`http://localhost:5000/myArtifacts${search}`, {withCredentials: true})
+  axios.get(`https://ph-a-11-server-side.vercel.app/myArtifacts${search}`, {withCredentials: true})
   .then(data => setArtifact(data.data))
 
   }, []);
@@ -28,7 +28,7 @@ const MyArtifacts = () => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/allArtifacts/${id}`, {
+        fetch(`https://ph-a-11-server-side.vercel.app/allArtifacts/${id}`, {
           method: "DELETE",
           headers: { 'content-type': 'application/json' },
         }).then(res => {

@@ -37,7 +37,7 @@ const Update = () => {
       confirmButtonText: "Yes, Update it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/myArtifacts/${_id}`, {
+        fetch(`https://ph-a-11-server-side.vercel.app/myArtifacts/${_id}`, {
           method: "PATCH",
           headers: { 'content-type': 'application/json' },
           body: JSON.stringify(latestArtifact)

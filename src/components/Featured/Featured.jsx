@@ -6,7 +6,7 @@ import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 const Featured = () => {
   const [getFeaturedData, setFeaturedData] = useState([]);
   useEffect(() => {
-    fetch('http://localhost:5000/featuredArtifacts')
+    fetch('https://ph-a-11-server-side.vercel.app/featuredArtifacts')
       .then(res => res.json())
       .then(data => setFeaturedData(data))
       .catch(err => console.log(err.message))

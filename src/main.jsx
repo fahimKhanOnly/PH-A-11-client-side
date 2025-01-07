@@ -61,12 +61,12 @@ const router = createBrowserRouter([
       {
         path: "/allArtifacts/:id",
         element: <PrivateRoute><ArtifactDetails></ArtifactDetails></PrivateRoute>,
-        loader: ({ params }) => fetch(`http://localhost:5000/allArtifacts/${params.id}`)
+        loader: ({ params }) => fetch(`https://ph-a-11-server-side.vercel.app/allArtifacts/${params.id}`)
       },
       {
         path: "/myArtifacts/update/:id",
         element: <PrivateRoute><Update></Update></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/allArtifacts/${params.id}`)
+        loader: ({params}) => fetch(`https://ph-a-11-server-side.vercel.app/allArtifacts/${params.id}`)
       }
     ]
   }

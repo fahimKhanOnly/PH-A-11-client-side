@@ -15,7 +15,7 @@ const AuthProvider = ({children}) => {
       setLoadingStatus(false);
       if(user?.email){
         const userEmail = {email: user.email};
-        axios.post('http://localhost:5000/jwt', userEmail, {withCredentials: true})
+        axios.post('https://ph-a-11-server-side.vercel.app/jwt', userEmail, {withCredentials: true})
       }
     })
     return () => {

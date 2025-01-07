@@ -22,7 +22,7 @@ const AddArtifacts = () => {
     const likes = 0;
     const anArtifact = { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes };
 
-    fetch('http://localhost:5000/allArtifacts', {
+    fetch('https://ph-a-11-server-side.vercel.app/allArtifacts', {
       method: "POST",
       headers: { 'content-type': 'application/json' },
       body: JSON.stringify(anArtifact)

@@ -12,7 +12,7 @@ const AllArtifacts = () => {
 
 
   useEffect(() => {
-    fetch('http://localhost:5000/allArtifacts')
+    fetch('https://ph-a-11-server-side.vercel.app/allArtifacts')
     .then(res => res.json())
     .then(data => {
       setArtifact(data);
@@ -24,7 +24,7 @@ const AllArtifacts = () => {
     e.preventDefault();
     const keyword = e.target.searchField.value.toLowerCase().trim().replace(/\s+/g, '');
     if(keyword){
-      fetch(`http://localhost:5000/findArtifacts?name=${keyword}`)
+      fetch(`https://ph-a-11-server-side.vercel.app/findArtifacts?name=${keyword}`)
         .then(res => res.json())
         .then(result => setArtifact(result));
     }
