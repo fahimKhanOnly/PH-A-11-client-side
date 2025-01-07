@@ -1,9 +1,55 @@
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import { useLoaderData } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../../Firebase/AuthProvider";
+import { toast } from "react-toastify";
 
 const ArtifactDetails = () => {
-  const { userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes } = useLoaderData();
+  const {userAvailability} = useContext(AuthContext);
+  const [getLikedList, setLikedList] = useState();
+  const [getLikedStatus, setLikedStatus] = useState(getLikedList);
+  
+  const { _id, userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes } = useLoaderData();
+  
+  useEffect(() => {
+    fetch(`https://ph-a-11-server-side.vercel.app/likedList?email=${userAvailability.email}&id=${_id}`)
+    .then(res => res.json())
+    .then(result => setLikedStatus(result.like)).catch(err => console.log(err.message));
+  }, [])
+
+  const likeHandler = () => {
+    setLikedStatus(!getLikedStatus);
+    const likedUser = {
+      id: _id,
+      like: !getLikedStatus,
+      userEmail: userAvailability.email,
+    };
+    if(likedUser.like){
+      fetch('https://ph-a-11-server-side.vercel.app/manageLikes', {
+        method: "POST",
+        headers: {'content-type': 'application/json'},
+        body: JSON.stringify(likedUser),
+      }).then(res => res.json()).then(result => {
+          if(result.acknowledged){
+            toast.success("Thanks for like.");
+          }
+      })
+    }
+    if(!likedUser.like){
+      fetch(`https://ph-a-11-server-side.vercel.app/likedList/${_id}`, {
+        method: 'DELETE',
+        headers: {'content-type': 'application/json'},
+      }).then(res => {
+        if(res.ok){
+          toast.error("😿 Disliked!");
+        }
+      })
+    }
+  }
+
+
+
   return (
     <div className="container mx-auto pt-9">
       <Helmet>
@@ -36,9 +82,14 @@ const ArtifactDetails = () => {
           <div className="divider my-0 h-0"></div>
 
           <div className="flex items-center gap-2 mt-5 border w-fit rounded-lg">
-            <div className="btn">
-              <FaRegThumbsUp className="hover:cursor-pointer text-xl" />
-              {/* <FaThumbsUp className="text-xl" /> */}
+            <div onClick={likeHandler}>
+              {
+                getLikedStatus ? <div className="hover:cursor-pointer btn">
+                  <FaThumbsUp className="text-xl" />
+                </div> : <div className="hover:cursor-pointer btn">
+                  <FaRegThumbsUp className="text-xl" />
+                </div>
+              }
             </div>
             <div className="flex items-center px-4 justify-center">
               <p className="text-center font-medium">{likes} Likes</p>
