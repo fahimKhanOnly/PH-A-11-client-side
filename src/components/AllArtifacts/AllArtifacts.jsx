@@ -1,22 +1,34 @@
-import { useEffect, useRef, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import empty from '../../assets/empty.svg';
 import { Helmet } from "react-helmet";
+import { ClockLoader } from "react-spinners";
 
 
 const AllArtifacts = () => {
-  const allData = useLoaderData();
-  const [getArtifact, setArtifact] = useState(allData);
+  const [loadingStatus, setLoading] = useState(true);
+  const [getArtifact, setArtifact] = useState([]);
+  const [getAllArtifacts, setAllArtifacts] = useState([]);
 
+
+  useEffect(() => {
+    fetch('http://localhost:5000/allArtifacts')
+    .then(res => res.json())
+    .then(data => {
+      setArtifact(data);
+      setAllArtifacts(data);
+      setLoading(false);
+    })
+  }, [])
   const searchHandler = e => {
     e.preventDefault();
     const keyword = e.target.searchField.value.toLowerCase().trim().replace(/\s+/g, '');
     if(keyword){
       fetch(`http://localhost:5000/findArtifacts?name=${keyword}`)
         .then(res => res.json())
-        .then(result => setArtifact(result))
+        .then(result => setArtifact(result));
     }
-    setArtifact(allData);
+    setArtifact(getAllArtifacts);
   }
 
   return (
@@ -35,6 +47,11 @@ const AllArtifacts = () => {
         </form>
       </div>
       <h4 className="ml-4 my-6 font-bold text-lg">Total Available <span>({getArtifact.length})</span></h4>
+
+      {
+        loadingStatus ? <div className="w-full h-[70vh] mt-20 flex items-center justify-center">
+        <ClockLoader size={100} color="gold" />
+      </div> : <>
       {
         getArtifact.length === 0 ? <div className="flex justify-center items-center">
           <img className="xl:w-[720px]" src={empty} alt="No data Available" />
@@ -57,6 +74,7 @@ const AllArtifacts = () => {
             </div>
           )
         }</div>
+      }</>
       }
     </div>
   );
