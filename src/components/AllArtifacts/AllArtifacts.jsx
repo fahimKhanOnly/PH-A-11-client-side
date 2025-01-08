@@ -58,8 +58,8 @@ const AllArtifacts = () => {
         </div> : <div className="space-y-4 mx-1.5 xl:grid gap-5 grid-cols-2">{
           getArtifact.map(data =>
             <div key={data._id} className="card lg:justify-between lg:card-side bg-base-100 shadow-xl">
-              <figure className="lg:w-1/2">
-                <img className="h-full" src={data.artifactImage} alt={data.artifactName} />
+              <figure className="">
+                <img className="w-[280px] h-[300px]" src={data.artifactImage} alt={data.artifactName} />
               </figure>
               <div className="card-body ">
                 <p className="text-lg font-medium text-gray-500">Artifact Name: <span className="text-lg font-semibold text-black">{data.artifactName}</span></p>

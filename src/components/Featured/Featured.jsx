@@ -34,7 +34,7 @@ const Featured = () => {
                   <div className="flex items-center border w-fit rounded-lg">
                     <Link className="btn btn-sm" to={`/allArtifacts/${data._id}`}><FaThumbsUp className="hover:cursor-pointer text-xl" /></Link>
                     <div className="flex items-center px-2 justify-center">
-                      <p className="text-center font-medium">{data.likes} Likes</p>
+                      <p className="text-center font-medium">{data.likes < 0 || !data.likes ? 0 : data.likes} Likes</p>
                     </div>
                   </div>
                   <Link to={`/allArtifacts/${data._id}`} className="btn btn-sm bg-[#FFCC6C]">View Details</Link>

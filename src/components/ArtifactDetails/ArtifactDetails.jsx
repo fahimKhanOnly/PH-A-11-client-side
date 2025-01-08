@@ -7,10 +7,15 @@ import { toast } from "react-toastify";
 
 const ArtifactDetails = () => {
   const {userAvailability} = useContext(AuthContext);
-  const [getLikedList, setLikedList] = useState();
-  const [getLikedStatus, setLikedStatus] = useState(getLikedList);
+  const [getLikedStatus, setLikedStatus] = useState(null);
+  const [getCurrentLike, setCurrentLike] = useState();
   
-  const { _id, userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes } = useLoaderData();
+  const data = useLoaderData();
+  const { _id, userName, myEmail, artifactName, artifactImage, artifactType, historicalContext, createdAt, discoverdAt, discoverdBy, presentLocation, description, likes } = data;
+
+  useEffect(() => {
+    setCurrentLike(data.likes);
+  }, []);
   
   useEffect(() => {
     fetch(`https://ph-a-11-server-side.vercel.app/likedList?email=${userAvailability.email}&id=${_id}`)
@@ -24,19 +29,44 @@ const ArtifactDetails = () => {
       id: _id,
       like: !getLikedStatus,
       userEmail: userAvailability.email,
+      artifactName: artifactName,
+      artifactImage: artifactImage,
+      artifactType: artifactType,
+      presentLocation: presentLocation,
     };
+
     if(likedUser.like){
+      setCurrentLike(getCurrentLike + 1);
+      fetch(`https://ph-a-11-server-side.vercel.app/increaseLike/${_id}`, {
+        method: "PATCH",
+        headers: {'content-type': 'application/json'},
+      }).then(res => {
+        if(res.ok){
+          // setCurrentLike(getCurrentLike + 1);
+        }
+      }).catch(err => console.log(err))
+
       fetch('https://ph-a-11-server-side.vercel.app/manageLikes', {
         method: "POST",
         headers: {'content-type': 'application/json'},
         body: JSON.stringify(likedUser),
-      }).then(res => res.json()).then(result => {
-          if(result.acknowledged){
-            toast.success("Thanks for like.");
-          }
+      }).then(res => {
+        if(res.ok){
+          toast.success("Thanks for like.");
+        }
       })
     }
     if(!likedUser.like){
+      setCurrentLike(getCurrentLike - 1);
+      fetch(`https://ph-a-11-server-side.vercel.app/decreaseLike/${_id}`, {
+        method: "PATCH",
+        headers: {'content-type': 'application/json'},
+      }).then(res => {
+        if(res.ok){
+          // setCurrentLike(getCurrentLike - 1);
+        }
+      }).catch(err => console.log(err))
+
       fetch(`https://ph-a-11-server-side.vercel.app/likedList/${_id}`, {
         method: 'DELETE',
         headers: {'content-type': 'application/json'},
@@ -47,8 +77,6 @@ const ArtifactDetails = () => {
       })
     }
   }
-
-
 
   return (
     <div className="container mx-auto pt-9">
@@ -92,7 +120,7 @@ const ArtifactDetails = () => {
               }
             </div>
             <div className="flex items-center px-4 justify-center">
-              <p className="text-center font-medium">{likes} Likes</p>
+              <p className="text-center font-medium">{getCurrentLike < 0 || !getCurrentLike ? 0 : getCurrentLike} Likes</p>
             </div>
           </div>
         </div>
